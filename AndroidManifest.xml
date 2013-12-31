@@ -4,8 +4,10 @@
     android:versionCode="1"
     android:versionName="1.0" >
 
+    <uses-permission android:name="android.permission.INTERNET" />
+	<uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
     <uses-sdk
-        android:minSdkVersion="8"
+        android:minSdkVersion="11"
         android:targetSdkVersion="18" />
 
     <application
@@ -38,7 +40,18 @@
             android:name="com.example.android_project.Details"
             android:label="@string/title_activity_details" >
         </activity>
-        <provider android:name=".provider.DataProvider" android:authorities="arabiannight.tistory.com.contentproviderdataa">
-    </provider></application>
+
+        <!-- 
+        <provider
+            android:name="com.example.android_project.provider.DataProvider"
+            android:authorities="arabiannight.tistory.com.contentproviderdataa" >
+        </provider>
+ 		-->
+ 
+        <activity
+            android:name="com.example.android_project.ArticleWriter"
+            android:label="@string/title_activity_article_writer" >
+        </activity>
+    </application>
 
 </manifest>

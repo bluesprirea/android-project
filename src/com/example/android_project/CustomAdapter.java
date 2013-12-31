@@ -1,11 +1,14 @@
 package com.example.android_project;
 
+import java.io.File;
 import java.io.IOException;
 import java.io.InputStream;
 import java.util.ArrayList;
 
 import android.app.Activity;
 import android.content.Context;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.graphics.drawable.Drawable;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -45,17 +48,12 @@ public class CustomAdapter extends ArrayAdapter<Article>{
 		tvTitle.setText(ListData.get(position).getTitle());
 		tvContent.setText(ListData.get(position).getContent());
 		
+		String img_path = context.getFilesDir().getPath()+"/"+ListData.get(position).getImgName();
+		File img_load_path = new File(img_path);
 		
-		
-		try{
-			//이미지 파일 이름 가지고 오기
-			InputStream ims = context.getAssets().open(ListData.get(position).getImgName());
-			//이미지로 불러와 drawable로 컨버팅
-			Drawable d = Drawable.createFromStream(ims, null);
-			//이미지 보여주
-			imageView.setImageDrawable(d);
-		}catch (IOException e){
-			Log.e("Error", e.getMessage());
+		if(img_load_path.exists()){
+			Bitmap bitmap = BitmapFactory.decodeFile(img_path);
+			imageView.setImageBitmap(bitmap);
 		}
 		
 		return row;

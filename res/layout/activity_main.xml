@@ -1,81 +1,43 @@
-<!-- <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="fill_parent"
-    android:layout_height="fill_parent" 
-    android:background="#C0C0C0">
-
-    <TextView
-        android:id="@+id/textView1"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentTop="true"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="99dp"
-        android:text="NEXTagram"
-        android:textAlignment="center"
-        android:textAppearance="?android:attr/textAppearanceLarge" />
-
-    <Button
-        android:id="@+id/main_LoginButton"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_centerHorizontal="true"
-        android:layout_centerVertical="true"
-        android:text="Login" />
-
-    <Button
-        android:id="@+id/main_UploadButton"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/main_LoginButton"
-        android:layout_centerHorizontal="true"
-        android:text="Upload" />
-
-    <Button
-        android:id="@+id/main_ListButton"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/main_UploadButton"
-        android:layout_centerHorizontal="true"
-        android:text="List" />
-
-    <Button
-        android:id="@+id/main_LogoutButton"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/main_ListButton"
-        android:layout_centerHorizontal="true"
-        android:text="Logout" />
-
-</RelativeLayout> -->
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="fill_parent"
-    android:layout_height="fill_parent"
-    android:orientation="vertical" >
+    android:layout_height="fill_parent" >
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content" >
+        android:layout_height="match_parent"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentTop="true"
+        android:orientation="vertical" >
 
-        <Button
-            android:id="@+id/button_write"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_weight ="1"
-            android:text="Write" />
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" >
 
-        <Button
-            android:id="@+id/button_refresh"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_weight ="1"
-            android:text="Refresh" />
+            <Button
+                android:id="@+id/button_write"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="Write" />
 
+            <Button
+                android:id="@+id/button_refresh"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="Refresh" />
+        </LinearLayout>
+
+        <ListView
+            android:id="@+id/CustomList_ListView"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent" >
+        </ListView>
     </LinearLayout>
 
-    <ListView
-        android:id="@+id/CustomList_ListView"
+    <com.devspark.sidenavigation.SideNavigationView
+        android:id="@+id/side_navigation_view"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content" >
-    </ListView>
+        android:layout_height="match_parent" />
 
-</LinearLayout>
+</RelativeLayout>

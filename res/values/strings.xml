@@ -8,5 +8,6 @@
     <string name="title_activity_logout">Logout</string>
     <string name="title_activity_list">List</string>
     <string name="title_activity_details">Details</string>
+    <string name="title_activity_article_writer">ArticleWriter</string>
 
 </resources>

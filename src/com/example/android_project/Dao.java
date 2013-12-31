@@ -37,45 +37,45 @@ public class Dao {
 		
 	}
 	
-	 public String getJsonTestData() {
-         
-         StringBuilder sb = new StringBuilder();
-         sb.append("");
-        
-         sb.append("[");
-        
-         sb.append("      {");
-         sb.append("         'ArticleNumber':'1',");
-         sb.append("         'Title':'오늘도 좋은 하루',");
-         sb.append("         'Writer':'학생1',");
-         sb.append("         'Id':'6613d02f3e2153283f23bf621145f877',");
-         sb.append("         'Content':'하지만 곧 기말고사지...',");
-         sb.append("         'WriteDate':'2013-09-23-10-10',");
-         sb.append("         'ImgName':'photo1.jpg'");
-         sb.append("      },");
-         sb.append("      {");
-         sb.append("         'ArticleNumber':'2',");
-         sb.append("         'Title':'대출 최고 3000만원',");
-         sb.append("         'Writer':'김미영 팀장',");
-         sb.append("         'Id':'6326d02f3e2153266f23bf621145f734',");
-         sb.append("         'Content':'김미영팀장입니다. 고갱님께서는 최저이율로 최고 3000만원까지 30분 이내 통장입금가능합니다.',");
-         sb.append("         'WriteDate':'2013-09-24-11-22',");
-         sb.append("         'ImgName':'photo2.jpg'");
-         sb.append("      },");
-         sb.append("      {");
-         sb.append("         'ArticleNumber':'3',");
-         sb.append("         'Title':'MAC등록신청',");
-         sb.append("         'Writer':'학생2',");
-         sb.append("         'Id':'8426d02f3e2153283246bf6211454262',");
-         sb.append("         'Content':'1a:2b:3c:4d:5e:6f',");
-         sb.append("         'WriteDate':'2013-09-25-12-33',");
-         sb.append("         'ImgName':'photo3.jpg'");
-         sb.append("      }");
-        
-         sb.append("]");
-          
-          return sb.toString();
-	 }
+//	 public String getJsonTestData() {
+//         
+//         StringBuilder sb = new StringBuilder();
+//         sb.append("");
+//        
+//         sb.append("[");
+//        
+//         sb.append("      {");
+//         sb.append("         'ArticleNumber':'1',");
+//         sb.append("         'Title':'오늘도 좋은 하루',");
+//         sb.append("         'Writer':'학생1',");
+//         sb.append("         'Id':'6613d02f3e2153283f23bf621145f877',");
+//         sb.append("         'Content':'하지만 곧 기말고사지...',");
+//         sb.append("         'WriteDate':'2013-09-23-10-10',");
+//         sb.append("         'ImgName':'photo1.jpg'");
+//         sb.append("      },");
+//         sb.append("      {");
+//         sb.append("         'ArticleNumber':'2',");
+//         sb.append("         'Title':'대출 최고 3000만원',");
+//         sb.append("         'Writer':'김미영 팀장',");
+//         sb.append("         'Id':'6326d02f3e2153266f23bf621145f734',");
+//         sb.append("         'Content':'김미영팀장입니다. 고갱님께서는 최저이율로 최고 3000만원까지 30분 이내 통장입금가능합니다.',");
+//         sb.append("         'WriteDate':'2013-09-24-11-22',");
+//         sb.append("         'ImgName':'photo2.jpg'");
+//         sb.append("      },");
+//         sb.append("      {");
+//         sb.append("         'ArticleNumber':'3',");
+//         sb.append("         'Title':'MAC등록신청',");
+//         sb.append("         'Writer':'학생2',");
+//         sb.append("         'Id':'8426d02f3e2153283246bf6211454262',");
+//         sb.append("         'Content':'1a:2b:3c:4d:5e:6f',");
+//         sb.append("         'WriteDate':'2013-09-25-12-33',");
+//         sb.append("         'ImgName':'photo3.jpg'");
+//         sb.append("      }");
+//        
+//         sb.append("]");
+//          
+//          return sb.toString();
+//	 }
 	 public void insertJsonData(String jsonData){
 		 
 		 //json으로 데이터를 파싱할때 쓸 임시 변수
@@ -87,6 +87,8 @@ public class Dao {
 		 String writeDate;
 		 String imgName;
 		 
+		 FileDownloader fileDownloader = new FileDownloader(context);
+		 Log.d("JSONDATA", jsonData);
 		 try{
 			 JSONArray jArr = new JSONArray(jsonData);
 			 
@@ -112,6 +114,7 @@ public class Dao {
 					 Log.e("Dao, insertJsonData", "DB Error! - " +e);
 					 e.printStackTrace();
 				 }
+				 fileDownloader.downFile("http://10.73.44.93/~stu07/image/"+imgName, imgName);
 			 }
 		 }catch (JSONException e){
 			 Log.e("test", "JSON ERROR! - " + e);
