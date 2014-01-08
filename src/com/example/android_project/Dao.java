@@ -28,7 +28,7 @@ public class Dao {
 					+ "WriterID text not null,"
 					+ "Content text not null,"
 					+ "WriteDate text not null,"
-					+ "ImgName text UNIQUE not null);";
+					+ "ImgName text not null);";
 			database.execSQL(sql);
 		}catch (Exception e) {
 			Log.e("test", "CREATE TABLE FAILED! - " +e);
@@ -152,32 +152,37 @@ public class Dao {
 	 }
 	 
 public Article getArticleByArticleNumber(int articleNumber){
+		 try{
+			 Article article = null;
+			 
+			 //array - based on articlenumbers.
+			 String title;
+			 String writer;
+			 String id;
+			 String content;
+			 String writeDate;
+			 String imgName;
+			 
+			 String sql = "SELECT * FROM Articles WHERE ArticleNumber = " + articleNumber + ";"; 
+			 Cursor cursor = database.rawQuery(sql, null);
+			 
+			 cursor.moveToNext();
+			 articleNumber = cursor.getInt(1);
+			 title = cursor.getString(2);
+			 writer = cursor.getString(3);
+			 id = cursor.getString(4);
+			 content = cursor.getString(5);
+			 writeDate = cursor.getString(6);
+			 imgName = cursor.getString(7);
+			 
+			 article = new Article(articleNumber, title, writer, id, content, writeDate, imgName);
+			 
+			 cursor.close();
+			 return article;
+		 }catch(Exception e){
+			 Log.e("get Article Error!", "error");
+		 }
+		return null;
 		 
-		 Article article = null;
-		 
-		 //array - based on articlenumbers.
-		 String title;
-		 String writer;
-		 String id;
-		 String content;
-		 String writeDate;
-		 String imgName;
-		 
-		 String sql = "SELECT * FROM Articles WHERE ArticleNumber = " + articleNumber + ";"; 
-		 Cursor cursor = database.rawQuery(sql, null);
-		 
-		 cursor.moveToNext();
-		 articleNumber = cursor.getInt(1);
-		 title = cursor.getString(2);
-		 writer = cursor.getString(3);
-		 id = cursor.getString(4);
-		 content = cursor.getString(5);
-		 writeDate = cursor.getString(6);
-		 imgName = cursor.getString(7);
-		 
-		 article = new Article(articleNumber, title, writer, id, content, writeDate, imgName);
-		 
-		 cursor.close();
-		 return article;
 	 }
 }

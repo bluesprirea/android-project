@@ -42,10 +42,6 @@ public class Details extends Activity {
 		if(img_load_path.exists()){
 			Bitmap bitmap = BitmapFactory.decodeFile(img_path);
 			ivImage.setImageBitmap(bitmap);
-		}
-		
+		}	
 	}
-
-	
-
 }

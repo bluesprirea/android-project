@@ -9,15 +9,15 @@ import android.util.Log;
 
 public class Proxy {
 	public String getJSON(){
-		//try&catch 사용생활
+		//try&catch 사용생활화하
 		try{
 			URL url = new URL("http://10.73.44.93/~stu07/loadData.php");
 			HttpURLConnection conn = (HttpURLConnection)url.openConnection();
-			//서버 접속에 대한 시간제
+			//서버 접속에 대한 시간제한
 			conn.setConnectTimeout(10 * 1000);
 			//파일을 읽어오는 것에 대한 시간제한
 			conn.setReadTimeout(10*1000);
-			//요청 방식은 post, get중에 get을 선
+			//요청 방식은 post, get중에 get을 선택
 			conn.setRequestMethod("GET");
 			//연결을 지속하도록 함. 
 			conn.setRequestProperty("Conncetion","Keep-Alive");
@@ -35,6 +35,7 @@ public class Proxy {
 			int status = conn.getResponseCode();
 			Log.i("test", "ProxyResponseCode:" +status);
 			
+			
 			switch(status) {
 			case 200:
 			case 201:
@@ -46,7 +47,7 @@ public class Proxy {
 					sb.append(line + "\n");
 				}
 				br.close();
-				
+				Log.i("test", sb.toString());
 				return sb.toString();
 			}
 		}catch (Exception e){
